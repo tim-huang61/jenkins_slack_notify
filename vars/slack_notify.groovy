@@ -12,6 +12,7 @@ def call(String buildStatus) {
         color = colorLookup[status]
     }
     
+    println currentBuild.getProperties().toString()
     def user = 'unknow'
     wrap([$class: 'BuildUser']) {
         user = "${BUILD_USER}"
