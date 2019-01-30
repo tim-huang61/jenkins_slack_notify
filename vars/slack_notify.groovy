@@ -17,7 +17,7 @@ def call(String buildStatus) {
         user = "${BUILD_USER}"
     }
 
-    def message = "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${status} after ${currentBuild.getDurationString()} (<${env.BUILD_URL}|#Open>)"
+    def message = "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${status} after ${currentBuild.durationString} (<${env.BUILD_URL}|#Open>)"
     if(status == 'STARTED'){
         message = "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${user} trigger (<${env.BUILD_URL}|#Open>)"    
     }
