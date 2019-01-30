@@ -12,7 +12,7 @@ def call(String buildStatus) {
         color = colorLookup[status]
     }
     
-    println currentBuild
+    println currentBuild.user
     def user = 'unknow'
     wrap([$class: 'BuildUser']) {
         user = "${BUILD_USER}"
