@@ -22,5 +22,5 @@ def call(String channel, String buildStatus) {
     def start_msg = "${user} trigger (<${env.BUILD_URL}|#Open>)"
     def message = job + (status == 'STARTED' ? start_msg : normal_msg)
    
-    slackSend ('test', color, message)
+    slackSend (channel: 'test', color: color, message: message)
 }
