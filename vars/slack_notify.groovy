@@ -12,11 +12,7 @@ def call(String buildStatus) {
         color = colorLookup[status]
     }
     
-    def user = 'unknow'
-    wrap([$class: 'BuildUser']) {
-        user = "${BUILD_USER}"
-    }
-
+    def user = currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
     def message = "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${status} after ${user} (<${env.BUILD_URL}|#Open>)"
     if(status == 'STARTED'){
         message = "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${user} trigger (<${env.BUILD_URL}|#Open>)"    
