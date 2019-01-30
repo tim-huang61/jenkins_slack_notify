@@ -2,7 +2,7 @@ def call(String channel, String buildStatus) {
     def status = buildStatus ?: 'SUCCESS'
     def color = ''
     def colorLookup = [
-        'STARTED':'good',
+        'STARTED':'',
         'SUCCESS':'good',
         'FAILURE':'danger',
         'NOT_BUILT':'',
@@ -17,10 +17,10 @@ def call(String channel, String buildStatus) {
         user = "${BUILD_USER}"
     }
 
-    def message = "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${status} after ${currentBuild.durationString} (<${env.BUILD_URL}|#Open>)"
-    if(status == 'STARTED'){
-        message = "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${user} trigger (<${env.BUILD_URL}|#Open>)"    
-    }
-
-    slackSend (channel: channel, color: color, message: message)
+    def job = "${env.JOB_NAME} - #${env.BUILD_NUMBER}"
+    def normal_msg = " ${status} after ${currentBuild.durationString} (<${env.BUILD_URL}|#Open>)"
+    def start_msg = " ${user} trigger (<${env.BUILD_URL}|#Open>)"
+    def message = job + status == 'STARTED' ? start_msg : normal_msg
+   
+    slackSend (channel, color, message)
 }
