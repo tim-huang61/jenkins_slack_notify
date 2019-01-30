@@ -12,7 +12,7 @@ def call(String buildStatus) {
         color = colorLookup[status]
     }
     
-    def message = "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${status} after ${env.BUILD_TIMESTAMP} (<${env.BUILD_URL}|#Open>)"
+    def message = "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${status} after ${BUILD_TIMESTAMP} (<${env.BUILD_URL}|#Open>)"
     if(status == 'STARTED'){
         message = "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${BUILD_USER} trigger (<${env.BUILD_URL}|#Open>)"    
     }
