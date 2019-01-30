@@ -1,4 +1,4 @@
-def call(String channel, String buildStatus) {
+def call(String buildStatus) {
     def status = buildStatus
     def color = ''
     def colorLookup = [
@@ -17,5 +17,5 @@ def call(String channel, String buildStatus) {
         message = "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${env.BUILD_USER} trigger (<${env.BUILD_URL}|#Open>)"    
     }
 
-    slackSend (channel: channel, color: color, message: message)
+    slackSend (channel: 'test', color: color, message: message)
 }
