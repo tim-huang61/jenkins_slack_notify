@@ -12,11 +12,7 @@ def call(String channel, String buildStatus) {
         color = colorLookup[status]
     }
     
-    def user = 'unknow'
-    wrap([$class: 'BuildUser']) {
-        user = "${BUILD_USER}"
-    }
-
+    def user = "${BUILD_USER}"
     def job = "${env.JOB_NAME} - #${env.BUILD_NUMBER} "
     def normal_msg = "${status} after ${currentBuild.durationString} (<${env.BUILD_URL}|#Open>)"
     def start_msg = "${user} trigger (<${env.BUILD_URL}|#Open>)"
